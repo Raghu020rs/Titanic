@@ -1,0 +1,253 @@
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create and train a Decision Tre//task 1
+
+pip install pandas numpy scikit-learn
+
+
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Load the Titanic dataset (train.csv) into a Pandas DataFrame
+data = pd.read_csv('train.csv')
+
+# Preprocessing: Remove unnecessary columns and fill missing values
+data = data.drop(['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked'], axis=1)
+data['Age'].fillna(data['Age'].median(), inplace=True)
+data['Fare'].fillna(data['Fare'].median(), inplace=True)
+data['Sex'] = data['Sex'].map({'male': 0, 'female': 1})
+
+# Split the data into features (X) and the target (y)
+X = data.drop('Survived', axis=1)
+y = data['Survived']
+e classifier
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = clf.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Accuracy: {accuracy * 100:.2f}%')
+
+
+
+
+
+//movie rating prediction 
+
+
+pip install pandas numpy scikit-learn
+
+
+import pandas as pd
+
+# Load the dataset
+movies = pd.read_csv('movies.csv')
+ratings = pd.read_csv('ratings.csv')
+
+# Merge the datasets based on movieId
+data = pd.merge(ratings, movies, on='movieId')
+
+
+X = data[['feature1', 'feature2', ...]]  # Features, e.g., movie attributes
+y = data['rating']  # Target variable
+
+
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+
+
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+
+from sklearn.metrics import mean_squared_error
+
+mse = mean_squared_error(y_test, y_pred)
+rmse = mse ** 0.5
+print(f'RMSE: {rmse}')
+
+
+//iris flowing structured 
+
+pip install pandas numpy scikit-learn matplotlib
+
+
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+
+
+import pandas as pd
+
+# Create a DataFrame
+df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+
+# Add the target column
+df['target'] = iris.target
+
+print(df.head())
+
+
+X = iris.data  # Features
+y = iris.target  # Target
+
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+from sklearn.svm import SVC
+
+model = SVC(kernel='linear')
+
+
+model.fit(X_train, y_train)
+
+
+y_pred = model.predict(X_test)
+
+
+from sklearn.metrics import accuracy_score
+
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Accuracy: {accuracy * 100:.2f}%')
+
+
+
+import matplotlib.pyplot as plt
+
+plt.scatter(X_test[:, 0], X_test[:, 1], c=y_pred)
+plt.xlabel(iris.feature_names[0])
+plt.ylabel(iris.feature_names[1])
+plt.show()
+
+
+
+//sales prediction using python 
+
+pip install pandas numpy scikit-learn matplotlib
+
+
+import pandas as pd
+
+# Load your sales data into a DataFrame
+data = pd.read_csv('sales_data.csv')
+
+# Explore the data
+print(data.head())
+
+
+# Select features and target variable
+X = data[['feature1', 'feature2', ...]]  # Features (e.g., time, promotions)
+y = data['sales']  # Target variable
+
+# Data preprocessing steps (e.g., handling missing values and encoding categorical variables)
+
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+
+
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = mse ** 0.5
+
+print(f'MAE: {mae}')
+print(f'RMSE: {rmse}')
+
+
+import matplotlib.pyplot as plt
+
+plt.scatter(y_test, y_pred)
+plt.xlabel('Actual Sales')
+plt.ylabel('Predicted Sales')
+plt.show()
+
+
+
+
+// Credit card fraud detection 
+
+pip install pandas numpy scikit-learn matplotlib
+
+
+import pandas as pd
+
+# Load the credit card transaction data into a DataFrame
+data = pd.read_csv('credit_card_transactions.csv')
+
+# Explore the data
+print(data.head())
+
+
+# Select features and target variable
+X = data.drop('Class', axis=1)  # Features (transaction details)
+y = data['Class']  # Target variable (0 for legitimate, 1 for fraud)
+
+# Data preprocessing steps (e.g., scaling, handling missing values, PCA)
+
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+from sklearn.ensemble import RandomForestClassifier
+
+model = RandomForestClassifier()
+
+
+model.fit(X_train, y_train)
+
+
+y_pred = model.predict(X_test)
+
+
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve, auc
+
+print(classification_report(y_test, y_pred))
+print(confusion_matrix(y_test, y_pred))
+print(f'ROC AUC Score: {roc_auc_score(y_test, y_pred)}')
+
+
+import matplotlib.pyplot as plt
+
+fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+roc_auc = auc(fpr, tpr)
+
+plt.figure()
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver Operating Characteristic')
+plt.legend(loc='lower right')
+plt.show()
